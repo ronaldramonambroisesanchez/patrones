@@ -1,0 +1,130 @@
+<!DOCTYPE>
+<html>
+      <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<head>
+	<title>Ejemplo Patron Observador</title>
+<style type="text/css">
+	.botones{
+		
+		
+		font-family: monospace;
+		font-size: 16px;
+		border-radius: 5px;
+		padding-bottom: 2px;
+		padding-top: 2px;
+		color: black;
+		text-align: center;
+		margin-left: 325px;
+		margin-right:520px;
+
+
+	}
+
+	.Textbox{
+border-color: black;
+border-width: 3px;
+border-radius: 5px;
+border-style: dashed;
+border-color: green;
+text-align: center;
+margin-left:615px; 
+margin-right:550px;
+font-size: 40px;
+font-family: Arial;
+	}
+
+	h2{
+
+font-size: 40px;
+font-family: Lobster;
+text-align: center;
+color: red;
+background-color: black;
+margin-left: 300px;
+margin-right:300px ;
+	}
+
+	.lista{
+font-family: monospace;
+font-size: 16px;
+text-align: center;
+
+
+	}
+
+body{
+
+	background-image: url('multicolor.webp')
+}
+.botones2{
+	color: black;
+	background-color: white;
+	border:none;
+	border-style: dashed;
+	border-radius: 50%;
+border-color: blue;
+text-align: center;
+margin-left: 650px;
+margin-right: 600px;
+}
+</style>
+</head>
+<body>
+<br><br>
+<h2><strong>Instroduzca Animales Africanos</strong></h2>
+<section class="Textbox">
+<input  type="Text" name="txt1" placeholder="Animales de Africa">
+</section> 
+
+<section class="botones">
+<br><br><button class="botones"><strong>Introducir</strong></button>
+</section>
+<ol class="lista"></ol>
+
+<script type="text/javascript">
+
+class AnimalesAfricanos{
+	constructor(){
+	this.Animales =[]
+	this.subscriptores=[]
+	}
+
+	agregarAnimalesAfricanos(Animal){
+	this.Animales.push(Animal)
+	this.notificarSubscriptores()
+	} 
+	agregarSubscriptor(callback){
+	this.subscriptores.push(callback)
+	}
+	notificarSubscriptores(){
+	this.subscriptores.forEach((subscriptor)=>{
+	subscriptor(this.Animales);
+		})
+	}
+}
+
+class Mostrar{
+	constructor(){
+	Animales.agregarSubscriptor(this.MostrarLista)
+}
+
+MostrarLista(Animales){
+	document.querySelector('ol').innerHTML =
+	Animales.map((Animal)=> '<li>'+Animal+'</li>')
+	.join('')
+	}
+}
+document.querySelector('button').addEventListener('click',() =>{
+	const input=document.querySelector('input')
+	const Animal=input.value
+	Animales.agregarAnimalesAfricanos(Animal)
+})
+	const Animales = new AnimalesAfricanos()
+	const Muestra = new Mostrar()
+
+</script>
+<br><br><br>
+<input class="botones2" type="button" value="Actualizar" onclick="location.reload()" 
+>
+</body>
+</html>
